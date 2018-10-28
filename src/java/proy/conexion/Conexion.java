@@ -19,17 +19,7 @@ public class Conexion {
     public static Connection _connection; 
     public static Conexion conexion; 
     
-    private Conexion(){
-        try {
-            DriverManager.registerDriver(new Driver());
-            _connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/sakila","root","");
-            System.out.println("yeak");
-         } 
-        catch (SQLException e)
-        {
-        System.out.println("Error al registrar el controlador"+ e.getMessage());
-        }
-    }
+    private Conexion(){}
     
     public static Conexion initialize(){
         if (conexion == null){
@@ -41,6 +31,20 @@ public class Conexion {
         
         return conexion;
 
+    }
+    
+    public Connection conectar(){
+        try {
+            DriverManager.registerDriver(new Driver());
+            _connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyecto_patrones","root","");
+            System.out.println("Conecto p");
+            return _connection;
+        } 
+        catch (SQLException e)
+        {
+            System.out.println("Error al registrar el controlador "+ e.getMessage());
+            return null;
+        }
     }
     /*
     public Vector listCustomer(String pais, String ciudad){
