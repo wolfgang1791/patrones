@@ -16,36 +16,32 @@ import java.sql.SQLException;
 
 public class Conexion {
     
-    public static Connection _connection; 
-    public static Conexion conexion; 
+    public static Connection _connection = null; 
     
-    private Conexion(){}
+    private Conexion(){
+        try {
+            DriverManager.registerDriver(new Driver());
+            _connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyecto_patrones","root","");
+            System.out.println("Conecto p");
+        } 
+        catch (SQLException e)
+        {
+            System.out.println("Error al registrar el controlador "+ e.getMessage());
+        }
+    }
     
-    public static Conexion initialize(){
-        if (conexion == null){
-            conexion = new Conexion();
+    public static Connection initialize(){
+        if (_connection == null){
+            new Conexion();
         }
         else{
             System.out.println("No se puede crear el objeto porque ya existe un objeto de la clase");
         }
         
-        return conexion;
-
+        return _connection;
     }
     
-    public Connection conectar(){
-        try {
-            DriverManager.registerDriver(new Driver());
-            _connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyecto_patrones","root","");
-            System.out.println("Conecto p");
-            return _connection;
-        } 
-        catch (SQLException e)
-        {
-            System.out.println("Error al registrar el controlador "+ e.getMessage());
-            return null;
-        }
-    }
+  
     /*
     public Vector listCustomer(String pais, String ciudad){
        // initialize();

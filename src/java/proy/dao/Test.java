@@ -5,6 +5,7 @@
  */
 package proy.dao;
 
+import java.sql.Connection;
 import proy.conexion.Conexion;
 
 /**
@@ -13,7 +14,7 @@ import proy.conexion.Conexion;
  */
 public class Test {
     public static void main(String[] args){
-        Conexion c = Conexion.initialize();
-        System.out.println(c.conectar());
+        Connection c = Conexion.initialize();
+        System.out.println(c);
     }
 }
