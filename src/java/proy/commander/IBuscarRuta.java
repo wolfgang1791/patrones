@@ -3,12 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proy.interfac;
+package proy.commander;
+
+import java.util.List;
+import proy.entidad.Paradero;
 
 /**
  *
  * @author Jonathan
  */
-public interface IEmpresa {
-    public void calcularTarifa();
+public interface IBuscarRuta {
+    public List<Paradero> buscar(String paradero);
 }

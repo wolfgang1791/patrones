@@ -16,10 +16,7 @@ public class Empresa {
     private String imagen;
     private Integer id_ruta;
     private String codigo_ruta;
-    private Integer id_paradero;
-    private String descripcion;
-    private Double latitud;
-    private Double longitud;
+    private String tipo; 
 
     public Integer getId_empresa() {
         return id_empresa;
@@ -61,41 +58,17 @@ public class Empresa {
         this.codigo_ruta = codigo_ruta;
     }
 
-    public Integer getId_paradero() {
-        return id_paradero;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setId_paradero(Integer id_paradero) {
-        this.id_paradero = id_paradero;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public Double getLatitud() {
-        return latitud;
-    }
-
-    public void setLatitud(Double latitud) {
-        this.latitud = latitud;
-    }
-
-    public Double getLongitud() {
-        return longitud;
-    }
-
-    public void setLongitud(Double longitud) {
-        this.longitud = longitud;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     @Override
     public String toString() {
-        return "Empresa{" + "id_empresa=" + id_empresa + ", nombre=" + nombre + ", imagen=" + imagen + ", id_ruta=" + id_ruta + ", codigo_ruta=" + codigo_ruta + ", id_paradero=" + id_paradero + ", descripcion=" + descripcion + ", latitud=" + latitud + ", longitud=" + longitud + '}';
+        return "Empresa{" + "id_empresa=" + id_empresa + ", nombre=" + nombre + ", imagen=" + imagen + ", id_ruta=" + id_ruta + ", codigo_ruta=" + codigo_ruta + ", tipo=" + tipo + '}';
     }
-    
+ 
 }

@@ -13,12 +13,44 @@ import proy.interfac.IEmpresa;
  */
 public class Consorcio extends Empresa implements IEmpresa{
     
+    private Double tarifageneral = 2.00;
+    private Double universitario;
+    private Double escolar;
+    
+    
     public Consorcio(){
         super();
     }
 
     @Override
     public void calcularTarifa() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        universitario = tarifageneral/2;
+        escolar = universitario/2;
     }
+
+    public Double getTarifageneral() {
+        return tarifageneral;
+    }
+
+    public void setTarifageneral(Double tarifageneral) {
+        this.tarifageneral = tarifageneral;
+    }
+
+    public Double getUniversitario() {
+        return universitario;
+    }
+
+    public void setUniversitario(Double universitario) {
+        this.universitario = universitario;
+    }
+
+    public Double getEscolar() {
+        return escolar;
+    }
+
+    public void setEscolar(Double escolar) {
+        this.escolar = escolar;
+    }
+    
+    
 }

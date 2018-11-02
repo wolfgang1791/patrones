@@ -5,13 +5,22 @@
  */
 package proy.entidad;
 
+import proy.interfac.IEmpresa;
+
 /**
  *
  * @author Jonathan
  */
 public class Independiente extends Empresa implements IEmpresa{
     
+    private Double tarifageneral = 0.0;
+    
     public Independiente(){
         super();
+    }
+
+    @Override
+    public void calcularTarifa() {
+  
     }
 }

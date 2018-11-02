@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import proy.conexion.Conexion;
 import proy.entidad.Empresa;
+import proy.entidad.Paradero;
 
 /**
  *
@@ -28,7 +29,7 @@ public class Receptor {
     
     public List<Empresa> obtener(String paradero){
        List<Empresa> list = new ArrayList<Empresa>();
-        String sql = "select e.id_empresa,e.nombre,e.imagen,r.id_ruta,r.codigo_ruta,p.id_paradero,p.descripcion,p.latitud,p.longitud from empresa e, ruta r, empresa_ruta er,ruta_paradero rp, paradero where p.descripcion = ? and p.id_paradero = rp.id_paradero and rp.id_ruta = r.id_ruta and r.id_ruta = er.id_ruta and e.id_empresa = er.id_empresa;";
+        String sql = "select e.id_empresa,e.nombre,e.imagen,r.id_ruta,r.codigo_ruta,e.tipo from empresa e, ruta r, empresa_ruta er,ruta_paradero rp, paradero where p.descripcion like '%?%' and p.id_paradero = rp.id_paradero and rp.id_ruta = r.id_ruta and r.id_ruta = er.id_ruta and e.id_empresa = er.id_empresa;";
         PreparedStatement ps = null;
         try {
             ps = _conn.prepareStatement(sql);
@@ -41,15 +42,33 @@ public class Receptor {
                     e.setImagen(rs.getString(3));
                     e.setId_ruta(rs.getInt(4));
                     e.setCodigo_ruta(rs.getString(5));
-                    e.setId_paradero(rs.getInt(6));
-                    e.setDescripcion(rs.getString(7));
-                    e.setLatitud(rs.getDouble(8));
-                    e.setLongitud(rs.getDouble(9));
+                    e.setTipo(rs.getString(6));
                     list.add(e);
                 }
         }catch (SQLException e) {
-        System.out.println("Error crear la sentencia "
-        + e.getMessage());
+        System.out.println("Error crear la sentencia "+ e.getMessage());
+        }
+        return list;
+    }
+    
+    public List<Paradero> obtener_(String paradero){
+        List<Paradero> list = new ArrayList<Paradero>();
+        String sql = "select p.id_paradero,p.descripcion,p.latitud,p.longitud from ruta_paradero rp, paradero p where  rp.id_ruta = (select rp.id_ruta from ruta_paradero rp, paradero p where p.descripcion like '%?%' and rp.id_paradero = p.id_paradero) and rp.id_paradero = p.id_paradero;";
+        PreparedStatement ps = null;
+        try {
+            ps = _conn.prepareStatement(sql);
+            ps.setString(1,paradero);
+            ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                   Paradero p = new Paradero();
+                   p.setId_paradero(rs.getInt(1));
+                   p.setDescripcion(rs.getString(2));
+                   p.setLatitud(rs.getDouble(3));
+                   p.setLongitud(rs.getDouble(4));
+                   list.add(p);
+                }
+        }catch (SQLException e) {
+        System.out.println("Error crear la sentencia "+ e.getMessage());
         }
         return list;
     }

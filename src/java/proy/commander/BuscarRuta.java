@@ -6,19 +6,19 @@
 package proy.commander;
 
 import java.util.List;
-import proy.entidad.Empresa;
+import proy.entidad.Paradero;
 
 /**
  *
  * @author Jonathan
  */
-public class BuscarEmpresa implements IBuscarEmpresa{
-    Receptor r;
+public class BuscarRuta implements IBuscarRuta{
     
-    public BuscarEmpresa(){}
+    public Receptor r;
+    
     @Override
-    public List<Empresa> buscar(String paradero) {
-        return r.obtener(paradero);
+    public List<Paradero> buscar(String paradero) {
+        return r.obtener_(paradero);
     }
     
 }

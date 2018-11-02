@@ -62,7 +62,7 @@ public class MainServlet extends HttpServlet {
             throws ServletException, IOException {
             processRequest(request, response);
             String paradero = request.getParameter("paradero");
-            BuscarEmpresa buscarempresa = new BuscarEmpresaParadero();
+            IBuscarEmpresa buscarempresa = new BuscarEmpresa();
             buscarempresa.buscar(paradero);
     }
 
