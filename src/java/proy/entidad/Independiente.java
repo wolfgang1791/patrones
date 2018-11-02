@@ -3,18 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proy.dao;
-
-import java.sql.Connection;
-import proy.conexion.Conexion;
+package proy.entidad;
 
 /**
  *
  * @author Jonathan
  */
-public class Test {
-    public static void main(String[] args){
-        Connection c = Conexion.initialize();
-        System.out.println(c);
+public class Independiente extends Empresa implements IEmpresa{
+    
+    public Independiente(){
+        super();
     }
 }
