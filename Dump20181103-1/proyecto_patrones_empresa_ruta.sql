@@ -16,27 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `ruta`
+-- Table structure for table `empresa_ruta`
 --
 
-DROP TABLE IF EXISTS `ruta`;
+DROP TABLE IF EXISTS `empresa_ruta`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ruta` (
-  `id_ruta` int(11) NOT NULL,
-  `codigo_ruta` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`id_ruta`)
+CREATE TABLE `empresa_ruta` (
+  `id_empresa` int(11) DEFAULT NULL,
+  `id_ruta` int(11) DEFAULT NULL,
+  KEY `id_empresa` (`id_empresa`),
+  KEY `id_ruta` (`id_ruta`),
+  CONSTRAINT `empresa_ruta_ibfk_1` FOREIGN KEY (`id_empresa`) REFERENCES `empresa` (`id_empresa`),
+  CONSTRAINT `empresa_ruta_ibfk_2` FOREIGN KEY (`id_ruta`) REFERENCES `ruta` (`id_ruta`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `ruta`
+-- Dumping data for table `empresa_ruta`
 --
 
-LOCK TABLES `ruta` WRITE;
-/*!40000 ALTER TABLE `ruta` DISABLE KEYS */;
-INSERT INTO `ruta` VALUES (1,'RU-001'),(2,'RU-002');
-/*!40000 ALTER TABLE `ruta` ENABLE KEYS */;
+LOCK TABLES `empresa_ruta` WRITE;
+/*!40000 ALTER TABLE `empresa_ruta` DISABLE KEYS */;
+INSERT INTO `empresa_ruta` VALUES (1,1),(2,1),(3,1),(4,1),(5,2),(6,2),(7,2),(8,2);
+/*!40000 ALTER TABLE `empresa_ruta` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -48,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-03 12:52:11
+-- Dump completed on 2018-11-03 13:21:29

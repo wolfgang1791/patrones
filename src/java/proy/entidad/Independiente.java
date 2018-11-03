@@ -5,6 +5,7 @@
  */
 package proy.entidad;
 
+import java.math.BigDecimal;
 import java.util.List;
 import proy.interfac.IEmpresa;
 
@@ -25,6 +26,7 @@ public class Independiente extends Empresa implements IEmpresa{
         for(int i=0;i<n;i++){
             tarifageneral += 0.07;
         }
+        tarifageneral = round(tarifageneral,2);
     }
 
     public float getTarifageneral() {
@@ -39,6 +41,10 @@ public class Independiente extends Empresa implements IEmpresa{
     public String toString() {
         return "Independiente{" + "tarifageneral=" + tarifageneral + '}';
     }
-    
+    public static float round(float number, int decimalPlace) {
+		BigDecimal bd = new BigDecimal(number);
+		bd = bd.setScale(decimalPlace, BigDecimal.ROUND_HALF_UP);
+		return bd.floatValue();
+    }
     
 }

@@ -42,14 +42,14 @@ AIzaSyAd32X_TFs3Db480JGyg0YS9weM0XoO-t8"
                 </div> 
             </div>
             <div class="row justify-content-center">
-              
+                <h2>Consorcio</h2>
                 <table class="table table-sm">
                     <thead>
                       <tr>
                         <th scope="col">Nombre de Empresa</th>
                         <th scope="col">Ruta</th>
                         <th scope="col">Imagen</th>
-                        <th scope="col">Tipo</th>
+                        <th scope="col">Tarifa</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -59,21 +59,21 @@ AIzaSyAd32X_TFs3Db480JGyg0YS9weM0XoO-t8"
                         <th scope="row"><%out.print(c.getNombre());%></th>
                         <th scope="row"><%out.print(c.getCodigo_ruta());%></th>
                         <th scope="row"><img class="img-thumbnail" width="100" height="100" src="<%out.print(c.getImagen());%>"></th>
-                        <th scope="row"><%out.print(c.getTipo());%></th>
+                        <th scope="row">General: S/. <%out.print(c.getTarifageneral());%> <br> Universitario S/.<%out.print(c.getUniversitario());%> <br> Escolar: S/.<%out.print(c.getEscolar());%></th>
                       </tr>
                       <%} %>
                     </tbody>
                  </table>
           </div>
           <div class="row justify-content-center">
-              
+              <h2>Independiente</h2>
                 <table class="table table-sm">
                     <thead>
                       <tr>
                         <th scope="col">Nombre de Empresa</th>
                         <th scope="col">Ruta</th>
                         <th scope="col">Imagen</th>
-                        <th scope="col">Tipo</th>
+                        <th scope="col">Tarifa</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -83,7 +83,7 @@ AIzaSyAd32X_TFs3Db480JGyg0YS9weM0XoO-t8"
                           <th scope="row"><%out.print(i.getNombre());%></th>
                           <th scope="row"><%out.print(i.getCodigo_ruta());%></th>
                           <th scope="row"><img class="img-thumbnail" width="100" height="100" src="<%out.print(i.getImagen());%>"></th>
-                          <th scope="row"><%out.print(i.getTipo());%></th>
+                          <th scope="row">S/. <%out.print(i.getTarifageneral());%></th>
                         </tr>
                       <%
                       }%>
