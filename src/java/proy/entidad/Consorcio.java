@@ -5,6 +5,7 @@
  */
 package proy.entidad;
 
+import java.util.List;
 import proy.interfac.IEmpresa;
 
 /**
@@ -23,7 +24,7 @@ public class Consorcio extends Empresa implements IEmpresa{
     }
 
     @Override
-    public void calcularTarifa() {
+    public void calcularTarifa(int n) {
         universitario = tarifageneral/2;
         escolar = universitario/2;
     }
@@ -50,6 +51,11 @@ public class Consorcio extends Empresa implements IEmpresa{
 
     public void setEscolar(Double escolar) {
         this.escolar = escolar;
+    }
+
+    @Override
+    public String toString() {
+        return "Consorcio{" + "tarifageneral=" + tarifageneral + ", universitario=" + universitario + ", escolar=" + escolar + '}';
     }
     
     

@@ -5,15 +5,20 @@
  */
 
             /* global google */
-
-            navigator.geolocation.getCurrentPosition(fn_ok,fn_mal);
+          //  console.log("fuckkkk");
+           navigator.geolocation.getCurrentPosition(fn_ok,fn_mal);
             var mapa = document.getElementById("map");
+            
+            var lat_ = document.getElementById("lat").value;
+            var lon_ = document.getElementById("lon").value;
+            console.log(lat_);
+            console.log(lon_);
             function fn_mal(){}
             function fn_ok(respuesta){
                var lat = respuesta.coords.latitude;
                var lon = respuesta.coords.longitude;
-               //var cor = lat+','+lon;
-
+               var cor = lat+','+lon;
+               console.log(cor);
                var larlon = new google.maps.LatLng(lat,lon);
                var objConf = {
                        zoom:17,
@@ -26,11 +31,11 @@
                        title:"SHITTTTT"
                };
                var gmarker = new google.maps.Marker(ocm);
-               var upn = new google.maps.LatLng(-12.0564133,-77.0859679);
+               var destino = new google.maps.LatLng(lat_,lon_);
 
                     var configd = {
                             origin: larlon,
-                            destination:upn,
+                            destination:destino,
                             travelMode: google.maps.TravelMode.DRIVING
                     };
 
@@ -43,7 +48,7 @@
 
                ds.route(configd,fn_rutear);
                function fn_rutear(res,status){
-                       if(status === "OK"){
+                       if(status === 'OK'){
                                dr.setDirections(res);
                        }
                        else{

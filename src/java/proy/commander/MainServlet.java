@@ -7,11 +7,19 @@ package proy.commander;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import proy.abstractfactory.factory.ConsorcioFactory;
+import proy.abstractfactory.factory.IndependienteFactory;
+import proy.entidad.Consorcio;
+import proy.entidad.Empresa;
+import proy.entidad.Independiente;
+import proy.entidad.Paradero;
 
 /**
  *
@@ -29,6 +37,7 @@ public class MainServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -62,10 +71,62 @@ public class MainServlet extends HttpServlet {
             throws ServletException, IOException {
             processRequest(request, response);
             String paradero = request.getParameter("paradero");
+            System.out.println(paradero);
+            
             IBuscarEmpresa buscarempresa = new BuscarEmpresa();
-            buscarempresa.buscar(paradero);
+            List<Empresa> listE = buscarempresa.buscar(paradero);
+            
+            IBuscarRuta buscarruta = new BuscarRuta();
+            List<Paradero> listP = buscarruta.buscar(paradero);
+            
+            List<Consorcio> listC = new ArrayList<Consorcio>();
+            List<Independiente> listI = new ArrayList<Independiente>();
+            for(Empresa e:listE){
+                switch(e.getTipo()){
+                    case "consorcio":       listC.add(consorcio_(e));
+                                            break;
+                    case "independiente":   listI.add(independiente_(e,listP.size()));
+                                            break;
+                }
+                System.out.println(e.getNombre());
+            }
+             
+            request.setAttribute("listaC", listC);
+            request.setAttribute("listaI", listI);
+            request.setAttribute("listaP", listP);
+            getServletConfig().getServletContext().getRequestDispatcher("/index_.jsp").forward(request,response);
+            
+    
+    
     }
-
+    
+    public Consorcio consorcio_(Empresa e){
+        ConsorcioFactory consorciofactory = new ConsorcioFactory();
+        Consorcio c = consorciofactory.getConsorcio(e.getTipo());
+        c.setId_empresa(e.getId_empresa());
+        c.setNombre(e.getNombre());
+        c.setImagen(e.getImagen());
+        c.setId_ruta(e.getId_ruta());
+        c.setCodigo_ruta(e.getCodigo_ruta());
+        c.setTipo(e.getTipo());
+        c.calcularTarifa(0);
+        
+        return c;
+    }
+    
+    public Independiente independiente_(Empresa e,int size){
+        IndependienteFactory indefactory = new IndependienteFactory();
+        Independiente i = indefactory.getIndependiente(e.getTipo());
+        i.setId_empresa(e.getId_empresa());
+        i.setNombre(e.getNombre());
+        i.setImagen(e.getImagen());
+        i.setId_ruta(e.getId_ruta());
+        i.setCodigo_ruta(e.getCodigo_ruta());
+        i.setTipo(e.getTipo());
+        i.calcularTarifa(size);
+        
+        return i; 
+    }
     /**
      * Returns a short description of the servlet.
      *

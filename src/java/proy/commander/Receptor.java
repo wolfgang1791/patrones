@@ -29,11 +29,11 @@ public class Receptor {
     
     public List<Empresa> obtener(String paradero){
        List<Empresa> list = new ArrayList<Empresa>();
-        String sql = "select e.id_empresa,e.nombre,e.imagen,r.id_ruta,r.codigo_ruta,e.tipo from empresa e, ruta r, empresa_ruta er,ruta_paradero rp, paradero where p.descripcion like '%?%' and p.id_paradero = rp.id_paradero and rp.id_ruta = r.id_ruta and r.id_ruta = er.id_ruta and e.id_empresa = er.id_empresa;";
+        String sql = "select e.id_empresa,e.nombre,e.imagen,r.id_ruta,r.codigo_ruta,e.tipo from empresa e, ruta r, empresa_ruta er,ruta_paradero rp, paradero p where p.descripcion like '%"+paradero+"%' and p.id_paradero = rp.id_paradero and rp.id_ruta = r.id_ruta and r.id_ruta = er.id_ruta and e.id_empresa = er.id_empresa group by id_empresa;";
         PreparedStatement ps = null;
         try {
-            ps = _conn.prepareStatement(sql);
-            ps.setString(1,paradero);
+            ps = _conn.prepareStatement(sql);//
+            System.out.println(sql);
             ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
                     Empresa e = new Empresa();
@@ -46,18 +46,18 @@ public class Receptor {
                     list.add(e);
                 }
         }catch (SQLException e) {
-        System.out.println("Error crear la sentencia "+ e.getMessage());
+            System.out.println("Error crear la sentencia "+ e.getMessage());
         }
         return list;
     }
     
     public List<Paradero> obtener_(String paradero){
         List<Paradero> list = new ArrayList<Paradero>();
-        String sql = "select p.id_paradero,p.descripcion,p.latitud,p.longitud from ruta_paradero rp, paradero p where  rp.id_ruta = (select rp.id_ruta from ruta_paradero rp, paradero p where p.descripcion like '%?%' and rp.id_paradero = p.id_paradero) and rp.id_paradero = p.id_paradero;";
+        String sql = "select p.id_paradero,p.descripcion,p.latitud,p.longitud from ruta_paradero rp, paradero p where  rp.id_ruta = (select rp.id_ruta from ruta_paradero rp, paradero p where p.descripcion like '%"+paradero+"%'  and rp.id_paradero = p.id_paradero limit 1) and p.id_paradero <= (select p.id_paradero from ruta_paradero rp, paradero p where p.descripcion like '%"+paradero+"%' and rp.id_paradero = p.id_paradero) and rp.id_paradero = p.id_paradero;";
         PreparedStatement ps = null;
         try {
             ps = _conn.prepareStatement(sql);
-            ps.setString(1,paradero);
+            System.out.println(sql);
             ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
                    Paradero p = new Paradero();

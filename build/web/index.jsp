@@ -4,6 +4,10 @@
     Author     : Jonathan
 --%>
 
+<%@page import="proy.entidad.Paradero"%>
+<%@page import="proy.entidad.Independiente"%>
+<%@page import="proy.entidad.Consorcio"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -16,26 +20,116 @@
     </head>
     <body>
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-2">
-                    
+             <% 
+                boolean b=false;
+                List<Consorcio> con = null;
+                List<Independiente> ind= null;
+                List<Paradero> par = null;
+                
+                 if(b){%>
+             <%  con = (List<Consorcio>) request.getAttribute("listaC");%>
+             <%  ind = (List<Independiente>)request.getAttribute("listaI");%>
+             <%  par = (List<Paradero>)request.getAttribute("listaP");}%>
+            <br>
+            <form action="/patrones/MainServlet" method="post">
+                <div class="form-group row">
+                    <label for="paradero" class="col-md-4 col-form-label text-md-right">¿A dondé ir?</label>
+                    <div class="col-md-4">
+                        <input id="name" type="text" class="form-control" name="paradero"autofocus>
+                        <input id="lat" type="hidden" class="form-control" name="lat" value="<% if(b) out.println(par.get(par.size()-1).getLatitud());%>">
+                        <input id="lon" type="hidden" class="form-control" name="lon" value="<% if(b) out.println(par.get(par.size()-1).getLongitud());%>">
+                    </div>
                 </div>
-            </div>
+            </form>
             <div class="row justify-content-center">
                 <div class="col-md-6">
                  <section id="map" style=" width: 700px; height: 500px"></section>
                 </div> 
             </div>
+            <div class="row justify-content-center">
+              
+                <table class="table table-sm">
+                    <thead>
+                      <tr>
+                        <th scope="col">Nombre de Empresa</th>
+                        <th scope="col">Ruta</th>
+                        <th scope="col">Imagen</th>
+                        <th scope="col">Tipo</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% if(b){
+                          for(Consorcio c:con){%>  
+                      <tr>
+                        <th scope="row"><%out.print(c.getNombre());%></th>
+                        <th scope="row"><%out.print(c.getCodigo_ruta());%></th>
+                        <th scope="row"><img class="img-thumbnail" src="<%out.print(c.getImagen());%>"></th>
+                        <th scope="row"><%out.print(c.getTipo());%></th>
+                      </tr>
+                      <%}
+                      }%>
+                    </tbody>
+                 </table>
+          </div>
+          <div class="row justify-content-center">
+              
+                <table class="table table-sm">
+                    <thead>
+                      <tr>
+                        <th scope="col">Nombre de Empresa</th>
+                        <th scope="col">Ruta</th>
+                        <th scope="col">Imagen</th>
+                        <th scope="col">Tipo</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% if(b){
+                           for(Independiente i:ind){%>  
+                      <tr>
+                        <th scope="row"><%out.print(i.getNombre());%></th>
+                        <th scope="row"><%out.print(i.getCodigo_ruta());%></th>
+                        <th scope="row"><img class="img-thumbnail" src="<%out.print(i.getImagen());%>"></th>
+                        <th scope="row"><%out.print(i.getTipo());%></th>
+                      </tr>
+                      <%}
+                      }%>
+                    </tbody>
+                 </table>
+          </div>
+          <div class="row justify-content-center">
+             
+                <table class="table table-sm">
+                    <thead>
+                      <tr>
+                        <th scope="col">Paraderos de Ruta</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% if(b){
+                          for(Paradero p:par){%>  
+                      <tr>
+                        <th scope="row"><%out.print(p.getDescripcion());%></th>
+                      </tr>
+                      <%}
+                      }%>
+                    </tbody>
+                 </table>
+          </div>
         </div>
         <script>
             navigator.geolocation.getCurrentPosition(fn_ok,fn_mal);
             var mapa = document.getElementById("map");
+            
+            var lat_ = document.getElementById("lat").value;
+            var lon_ = document.getElementById("lon").value;
+            console.log(lat_);
+            console.log(lon_);
             function fn_mal(){}
             function fn_ok(respuesta){
                var lat = respuesta.coords.latitude;
                var lon = respuesta.coords.longitude;
-               //var cor = lat+','+lon;
-
+               var cor = lat+','+lon;
+               console.log(cor);
                var larlon = new google.maps.LatLng(lat,lon);
                var objConf = {
                        zoom:17,
@@ -48,11 +142,11 @@
                        title:"SHITTTTT"
                };
                var gmarker = new google.maps.Marker(ocm);
-               var unmsm = new google.maps.LatLng(-12.0564133,-77.0859679);
+               var destino = new google.maps.LatLng(lat_,lon_);
 
                     var configd = {
                             origin: larlon,
-                            destination:unmsm,
+                            destination:destino,
                             travelMode: google.maps.TravelMode.DRIVING
                     };
 

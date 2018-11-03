@@ -5,10 +5,13 @@
  */
 package proy.interfac;
 
+import java.util.List;
+import proy.entidad.Paradero;
+
 /**
  *
  * @author Jonathan
  */
 public interface IEmpresa {
-    public void calcularTarifa();
+    public void calcularTarifa(int n);
 }

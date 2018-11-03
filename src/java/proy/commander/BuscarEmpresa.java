@@ -13,9 +13,10 @@ import proy.entidad.Empresa;
  * @author Jonathan
  */
 public class BuscarEmpresa implements IBuscarEmpresa{
-    Receptor r;
+    Receptor r = new Receptor();
     
     public BuscarEmpresa(){}
+    
     @Override
     public List<Empresa> buscar(String paradero) {
         return r.obtener(paradero);

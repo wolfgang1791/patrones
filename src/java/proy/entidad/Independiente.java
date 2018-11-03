@@ -5,6 +5,7 @@
  */
 package proy.entidad;
 
+import java.util.List;
 import proy.interfac.IEmpresa;
 
 /**
@@ -13,14 +14,31 @@ import proy.interfac.IEmpresa;
  */
 public class Independiente extends Empresa implements IEmpresa{
     
-    private Double tarifageneral = 0.0;
+    private float tarifageneral = 0;
     
     public Independiente(){
         super();
     }
 
     @Override
-    public void calcularTarifa() {
-  
+    public void calcularTarifa(int n) {
+        for(int i=0;i<n;i++){
+            tarifageneral += 0.07;
+        }
     }
+
+    public float getTarifageneral() {
+        return tarifageneral;
+    }
+
+    public void setTarifageneral(float tarifageneral) {
+        this.tarifageneral = tarifageneral;
+    }
+
+    @Override
+    public String toString() {
+        return "Independiente{" + "tarifageneral=" + tarifageneral + '}';
+    }
+    
+    
 }

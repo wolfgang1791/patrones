@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : 27/10/2018, 08:30:30 PM
+    Document   : index_
+    Created on : 02/11/2018, 09:51:35 PM
     Author     : Jonathan
 --%>
 
@@ -21,23 +21,22 @@
     <body>
         <div class="container-fluid">
              <% 
-                boolean b=false;
                 List<Consorcio> con = null;
-                List<Independiente> ind= null;
+                List<Independiente> ind = null;
                 List<Paradero> par = null;
                 
-                 if(b){%>
-             <%  con = (List<Consorcio>) request.getAttribute("listaC");%>
+                
+                 con = (List<Consorcio>) request.getAttribute("listaC");%>
              <%  ind = (List<Independiente>)request.getAttribute("listaI");%>
-             <%  par = (List<Paradero>)request.getAttribute("listaP");}%>
+             <%  par = (List<Paradero>)request.getAttribute("listaP");%>
             <br>
             <form action="/patrones/MainServlet" method="post">
                 <div class="form-group row">
                     <label for="paradero" class="col-md-4 col-form-label text-md-right">¿A dondé ir?</label>
                     <div class="col-md-4">
                         <input id="name" type="text" class="form-control" name="paradero"autofocus>
-                        <input id="lat" type="hidden" class="form-control" name="lat" value="<% if(b) out.println(par.get(par.size()-1).getLatitud());%>">
-                        <input id="lon" type="hidden" class="form-control" name="lon" value="<% if(b) out.println(par.get(par.size()-1).getLongitud());%>">
+                        <input id="lat" type="hidden" class="form-control" name="lat" value="<%  out.println(par.get(par.size()-1).getLatitud());%>">
+                        <input id="lon" type="hidden" class="form-control" name="lon" value="<%  out.println(par.get(par.size()-1).getLongitud());%>">
                     </div>
                 </div>
             </form>
@@ -58,16 +57,15 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <% if(b){
+                      <% 
                           for(Consorcio c:con){%>  
                       <tr>
                         <th scope="row"><%out.print(c.getNombre());%></th>
                         <th scope="row"><%out.print(c.getCodigo_ruta());%></th>
-                        <th scope="row"><img class="img-thumbnail" src="<%out.print(c.getImagen());%>"></th>
+                        <th scope="row"><img class="img-thumbnail" width="100" height="100" src="<%out.print(c.getImagen());%>"></th>
                         <th scope="row"><%out.print(c.getTipo());%></th>
                       </tr>
-                      <%}
-                      }%>
+                      <%} %>
                     </tbody>
                  </table>
           </div>
@@ -83,15 +81,15 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <% if(b){
-                           for(Independiente i:ind){%>  
-                      <tr>
-                        <th scope="row"><%out.print(i.getNombre());%></th>
-                        <th scope="row"><%out.print(i.getCodigo_ruta());%></th>
-                        <th scope="row"><img class="img-thumbnail" src="<%out.print(i.getImagen());%>"></th>
-                        <th scope="row"><%out.print(i.getTipo());%></th>
-                      </tr>
-                      <%}
+                      <% 
+                      for(Independiente i:ind){%>  
+                        <tr>
+                          <th scope="row"><%out.print(i.getNombre());%></th>
+                          <th scope="row"><%out.print(i.getCodigo_ruta());%></th>
+                          <th scope="row"><img class="img-thumbnail" width="100" height="100" src="<%out.print(i.getImagen());%>"></th>
+                          <th scope="row"><%out.print(i.getTipo());%></th>
+                        </tr>
+                      <%
                       }%>
                     </tbody>
                  </table>
@@ -105,18 +103,18 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <% if(b){
+                      <% 
                           for(Paradero p:par){%>  
                       <tr>
                         <th scope="row"><%out.print(p.getDescripcion());%></th>
                       </tr>
-                      <%}
+                      <%
                       }%>
                     </tbody>
                  </table>
           </div>
         </div>
-        <script>
+    <script>
             navigator.geolocation.getCurrentPosition(fn_ok,fn_mal);
             var mapa = document.getElementById("map");
             
@@ -163,14 +161,13 @@
                                dr.setDirections(res);
                        }
                        else{
-                               alert("shit");
+                               console.log("shit");
                        }
                }
 
         } 
-
-            
-        </script>
+    </script>
         
     </body>
 </html>
+

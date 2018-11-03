@@ -14,7 +14,7 @@ import proy.entidad.Paradero;
  */
 public class BuscarRuta implements IBuscarRuta{
     
-    public Receptor r;
+    public Receptor r = new Receptor();
     
     @Override
     public List<Paradero> buscar(String paradero) {

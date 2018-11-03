@@ -47,5 +47,10 @@ public class Paradero {
         this.longitud = longitud;
     }
 
+    @Override
+    public String toString() {
+        return "Paradero{" + "id_paradero=" + id_paradero + ", descripcion=" + descripcion + ", latitud=" + latitud + ", longitud=" + longitud + '}';
+    }
+
     
 }
