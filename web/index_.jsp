@@ -14,25 +14,21 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <script src="http://maps.googleapis.com/maps/api/js?v3"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
+          <script async defer src="https://maps.googleapis.com/maps/api/js?key=
+AIzaSyAd32X_TFs3Db480JGyg0YS9weM0XoO-t8"
+  type="text/javascript"></script>
+        <!--<script src="http://maps.googleapis.com/maps/api/js?v3"></script>-->
     </head>
     <body>
         <div class="container-fluid">
-             <% 
-                List<Consorcio> con = null;
-                List<Independiente> ind = null;
-                List<Paradero> par = null;
-                
-                
-                 con = (List<Consorcio>) request.getAttribute("listaC");%>
-             <%  ind = (List<Independiente>)request.getAttribute("listaI");%>
-             <%  par = (List<Paradero>)request.getAttribute("listaP");%>
+             <% List<Consorcio>  con = (List<Consorcio>) request.getAttribute("listaC");%>
+             <% List<Independiente> ind = (List<Independiente>)request.getAttribute("listaI");%>
+             <% List<Paradero>par = (List<Paradero>)request.getAttribute("listaP");%>
             <br>
             <form action="/patrones/MainServlet" method="post">
                 <div class="form-group row">
-                    <label for="paradero" class="col-md-4 col-form-label text-md-right">¿A dondé ir?</label>
+                    <label for="paradero" class="col-md-4 col-form-label text-md-right"><h2>¿A dondé ir?</h2></label>
                     <div class="col-md-4">
                         <input id="name" type="text" class="form-control" name="paradero"autofocus>
                         <input id="lat" type="hidden" class="form-control" name="lat" value="<%  out.println(par.get(par.size()-1).getLatitud());%>">
@@ -129,6 +125,7 @@
                var cor = lat+','+lon;
                console.log(cor);
                var larlon = new google.maps.LatLng(lat,lon);
+               console.log(larlon);
                var objConf = {
                        zoom:17,
                        center:larlon
@@ -141,7 +138,7 @@
                };
                var gmarker = new google.maps.Marker(ocm);
                var destino = new google.maps.LatLng(lat_,lon_);
-
+               console.log(destino);
                     var configd = {
                             origin: larlon,
                             destination:destino,

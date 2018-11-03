@@ -6,7 +6,7 @@
 
             /* global google */
           //  console.log("fuckkkk");
-           navigator.geolocation.getCurrentPosition(fn_ok,fn_mal);
+            navigator.geolocation.getCurrentPosition(fn_ok,fn_mal);
             var mapa = document.getElementById("map");
             
             var lat_ = document.getElementById("lat").value;
