@@ -14,6 +14,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import proy.abstractfactory.AbstractFactory;
+import proy.abstractfactory.FactoryProducer;
 import proy.abstractfactory.factory.ConsorcioFactory;
 import proy.abstractfactory.factory.IndependienteFactory;
 import proy.entidad.Consorcio;
@@ -101,7 +103,7 @@ public class MainServlet extends HttpServlet {
     }
     
     public Consorcio consorcio_(Empresa e){
-        ConsorcioFactory consorciofactory = new ConsorcioFactory();
+        AbstractFactory consorciofactory = FactoryProducer.getFactory(e.getTipo());
         Consorcio c = consorciofactory.getConsorcio(e.getTipo());
         c.setId_empresa(e.getId_empresa());
         c.setNombre(e.getNombre());
@@ -115,7 +117,7 @@ public class MainServlet extends HttpServlet {
     }
     
     public Independiente independiente_(Empresa e,int size){
-        IndependienteFactory indefactory = new IndependienteFactory();
+        AbstractFactory indefactory = FactoryProducer.getFactory(e.getTipo());
         Independiente i = indefactory.getIndependiente(e.getTipo());
         i.setId_empresa(e.getId_empresa());
         i.setNombre(e.getNombre());

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import proy.conexion.Conexion;
 import proy.entidad.Empresa;
+import proy.entidad.Empresa_;
 import proy.entidad.Paradero;
 
 /**
@@ -71,6 +72,28 @@ public class Receptor {
         System.out.println("Error crear la sentencia "+ e.getMessage());
         }
         return list;
+    }
+    
+    public ResultSet obtener_todos(){
+        ResultSet rs = null;
+        String sql = "select * from empresa";
+        PreparedStatement ps = null;
+        try {
+            ps = _conn.prepareStatement(sql);
+            System.out.println(sql);
+            rs = ps.executeQuery();
+                /*while (rs.next()) {
+                   Empresa_ e_ = new Empresa_();
+                   e_.setId(rs.getInt(1));
+                   e_.setNombre(rs.getString(2));
+                   e_.setImagen(rs.getString(3));
+                   e_.setTipo(rs.getString(4));
+                   list.add(e_);
+                }*/
+        }catch (SQLException e) {
+        System.out.println("Error crear la sentencia "+ e.getMessage());
+        }
+        return rs;
     }
         
 }
