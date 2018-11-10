@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/Jonathan/Documents/NetBeansProjects/patrones/src/java/proy/entidad/Consorcio.java</file>
             <file>file:/C:/Users/Jonathan/Documents/NetBeansProjects/patrones/src/java/proy/commander/MainServlet.java</file>
             <file>file:/C:/Users/Jonathan/Documents/NetBeansProjects/patrones/src/java/proy/abstractfactory/FactoryProducer.java</file>
@@ -14,6 +15,10 @@
             <file>file:/C:/Users/Jonathan/Documents/NetBeansProjects/patrones/src/java/proy/abstractfactory/factory/IndependienteFactory.java</file>
             <file>file:/C:/Users/Jonathan/Documents/NetBeansProjects/patrones/src/java/proy/interfac/IEmpresa.java</file>
             <file>file:/C:/Users/Jonathan/Documents/NetBeansProjects/patrones/src/java/proy/conexion/Conexion.java</file>
+=======
+            <file>file:/D:/universidad/7mo/Patrones/proyecto/patrones_fake/web/index.jsp</file>
+            <file>file:/D:/universidad/7mo/Patrones/proyecto/patrones_fake/web/index_.jsp</file>
+>>>>>>> e15dbc470762448b1e327486233480b9462e043e
         </group>
     </open-files>
 </project-private>

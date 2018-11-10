@@ -16,9 +16,25 @@
         <title>JSP Page</title>
         <script src="http://maps.googleapis.com/maps/api/js?v3"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
+        <style type="text/css">
+           body { background-image: url(img/fondo.jpg) ;
+                  background-repeat: no-repeat;
+                  background-size: 100%;
+                  background-attachment: fixed;
+                  
+           }
+           .xd{
+               background: #fff;
+               opacity: 0.99;
+           }
+           .container-fluid{
+            height: 100%;
+            }
+            
+            
+        </style>
     </head>
-    <body>
+    <body >
         <div class="container-fluid">
              <% 
                 boolean b=false;
@@ -31,47 +47,57 @@
              <%  ind = (List<Independiente>)request.getAttribute("listaI");%>
              <%  par = (List<Paradero>)request.getAttribute("listaP");}%>
             <br>
-            <form action="/patrones/MainServlet" method="post">
-                <div class="form-group row">
-                    <label for="paradero" class="col-md-4 col-form-label text-md-right">¿A dondé ir?</label>
-                    <div class="col-md-4">
+            <form action="MainServlet" method="post">
+                
+                <div class="form-group row justify-content-center mt-4">
+                    <div class="col-2">
+                        <label for="paradero" class=" col-form-label text-md-right"><h4 class="text-white">¿A dondé ir?</h4></label>
+                    </div>
+                    <div class="col-4 ">
                         <input id="name" type="text" class="form-control" name="paradero"autofocus>
                         <input id="lat" type="hidden" class="form-control" name="lat" value="<% if(b) out.println(par.get(par.size()-1).getLatitud());%>">
                         <input id="lon" type="hidden" class="form-control" name="lon" value="<% if(b) out.println(par.get(par.size()-1).getLongitud());%>">
                     </div>
                 </div>
+                    
+                    
             </form>
-            <div class="row justify-content-center">
-                <div class="col-md-6">
-                 <section id="map" style=" width: 700px; height: 500px"></section>
-                </div> 
-            </div>
-            <div class="row justify-content-center">
-              
-                <table class="table table-sm">
-                    <thead>
-                      <tr>
-                        <th scope="col">Nombre de Empresa</th>
-                        <th scope="col">Ruta</th>
-                        <th scope="col">Imagen</th>
-                        <th scope="col">Tipo</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <% if(b){
-                          for(Consorcio c:con){%>  
-                      <tr>
-                        <th scope="row"><%out.print(c.getNombre());%></th>
-                        <th scope="row"><%out.print(c.getCodigo_ruta());%></th>
-                        <th scope="row"><img class="img-thumbnail" src="<%out.print(c.getImagen());%>"></th>
-                        <th scope="row"><%out.print(c.getTipo());%></th>
-                      </tr>
-                      <%}
-                      }%>
-                    </tbody>
-                 </table>
-          </div>
-          <div class="row justify-content-center">
+            <div class="xd">      
+                <div class="row justify-content-md-center mb-5 ">
+                    <div class="col ml-6">
+                     <section id="map" style="  height: 500px;"></section>
+                    </div> 
+                </div>
+            </div> 
+              <!--
+                <div class="row  justify-content-md-center   xd mt-5">
+                    <div class="col-8">
+                        <table class="table table-sm ">
+                            <thead>
+                              <tr>
+                                <th scope="col">Nombre de Empresa</th>
+                                <th scope="col">Ruta</th>
+                                <th scope="col">Imagen</th>
+                                <th scope="col">Tipo</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <% if(b){
+                                  for(Consorcio c:con){%>  
+                              <tr>
+                                <th scope="row"><%out.print(c.getNombre());%></th>
+                                <th scope="row"><%out.print(c.getCodigo_ruta());%></th>
+                                <th scope="row"><img class="img-thumbnail" src="<%out.print(c.getImagen());%>"></th>
+                                <th scope="row"><%out.print(c.getTipo());%></th>
+                              </tr>
+                              <%}
+                              }%>
+                            </tbody>
+                         </table>
+                     </div>
+             
+          
+          <div class="col-8">
               
                 <table class="table table-sm">
                     <thead>
@@ -96,7 +122,7 @@
                     </tbody>
                  </table>
           </div>
-          <div class="row justify-content-center">
+          <div class="col-8 mt-6">
              
                 <table class="table table-sm">
                     <thead>
@@ -115,7 +141,9 @@
                     </tbody>
                  </table>
           </div>
-        </div>
+         </div>
+                    -->
+         </div>
         <script>
             navigator.geolocation.getCurrentPosition(fn_ok,fn_mal);
             var mapa = document.getElementById("map");

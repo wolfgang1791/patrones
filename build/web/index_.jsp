@@ -19,6 +19,39 @@
 AIzaSyAd32X_TFs3Db480JGyg0YS9weM0XoO-t8"
   type="text/javascript"></script>
         <!--<script src="http://maps.googleapis.com/maps/api/js?v3"></script>-->
+         <style type="text/css">
+           body { background-image: url(img/fondo2.jpg) ;
+                  background-repeat: no-repeat;
+                  background-size: 100%;
+                  background-attachment: fixed;
+                  
+           }
+           .xd{
+               
+               /*opacity: 1 !important;*/
+           }
+           .container-fluid{
+            height: 100%;
+            }
+            .color{
+                background-color: rgba(60,175,180, 1);
+                
+                
+            }
+            
+            .color2{
+                background-color: rgba(54,148,167, 0.7) ;
+   
+                
+            }
+            .color3{
+                background-color: rgba(40,29,13, 1) ;
+            }
+            .color4{
+                background-color: rgba(37,120,97, 0.9) ;
+            }
+            
+        </style>
     </head>
     <body>
         <div class="container-fluid">
@@ -26,88 +59,121 @@ AIzaSyAd32X_TFs3Db480JGyg0YS9weM0XoO-t8"
              <% List<Independiente> ind = (List<Independiente>)request.getAttribute("listaI");%>
              <% List<Paradero>par = (List<Paradero>)request.getAttribute("listaP");%>
             <br>
-            <form action="/patrones/MainServlet" method="post">
-                <div class="form-group row">
-                    <label for="paradero" class="col-md-4 col-form-label text-md-right"><h2>¿A dondé ir?</h2></label>
-                    <div class="col-md-4">
+            <form action="MainServlet" method="post">
+                <div class="form-group row justify-content-center mt-4">
+                    <div class="col-2">
+                        <label for="paradero" class="col-form-label text-md-right "><h4 class="text-white">¿A dondé ir?</h4></label>
+                    </div>
+                    <div class="col-4">
                         <input id="name" type="text" class="form-control" name="paradero"autofocus>
                         <input id="lat" type="hidden" class="form-control" name="lat" value="<%  out.println(par.get(par.size()-1).getLatitud());%>">
                         <input id="lon" type="hidden" class="form-control" name="lon" value="<%  out.println(par.get(par.size()-1).getLongitud());%>">
                     </div>
                 </div>
             </form>
+                    
             <div class="row justify-content-center">
-                <div class="col-md-6">
-                 <section id="map" style=" width: 700px; height: 500px"></section>
+                <div class="col ml-6">
+                 <section id="map" style="height: 500px;"></section>
                 </div> 
             </div>
-            <div class="row justify-content-center">
-                <h2>Consorcio</h2>
-                <table class="table table-sm">
-                    <thead>
-                      <tr>
-                        <th scope="col">Nombre de Empresa</th>
-                        <th scope="col">Ruta</th>
-                        <th scope="col">Imagen</th>
-                        <th scope="col">Tarifa</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <% 
-                          for(Consorcio c:con){%>  
-                      <tr>
-                        <th scope="row"><%out.print(c.getNombre());%></th>
-                        <th scope="row"><%out.print(c.getCodigo_ruta());%></th>
-                        <th scope="row"><img class="img-thumbnail" width="100" height="100" src="<%out.print(c.getImagen());%>"></th>
-                        <th scope="row">General: S/. <%out.print(c.getTarifageneral());%> <br> Universitario S/.<%out.print(c.getUniversitario());%> <br> Escolar: S/.<%out.print(c.getEscolar());%></th>
-                      </tr>
-                      <%} %>
-                    </tbody>
-                 </table>
+                    
+            <div class="row justify-content-center mt-5">
+                <div class="col-3 color d-flex">
+                    <div class="align-self-center">
+                        <h1 class=" text-white">Consorcio</h1>
+                    </div>
+                </div>
+                
+                <div class="col-8 color2">
+                    <div class="row mt-1 justify-content-center">
+                        <div class="col-10">
+                            <table class="table table-sm table-hover">
+                                <thead class="thead-dark">
+                                  <tr>
+                                    <th scope="col">Nombre de Empresa</th>
+                                    <th scope="col">Ruta</th>
+                                    <th scope="col">Imagen</th>
+                                    <th scope="col">Tarifa</th>
+                                  </tr>
+                                </thead>
+                                <tbody class="text-white">
+                                  <% 
+                                      for(Consorcio c:con){%>  
+                                  <tr>
+                                    <th scope="row"><%out.print(c.getNombre());%></th>
+                                    <th scope="row"><%out.print(c.getCodigo_ruta());%></th>
+                                    <th scope="row"><img class="img-thumbnail" width="100" height="100" src="<%out.print(c.getImagen());%>"></th>
+                                    <th scope="row">General: S/. <%out.print(c.getTarifageneral());%> <br> Universitario S/.<%out.print(c.getUniversitario());%> <br> Escolar: S/.<%out.print(c.getEscolar());%></th>
+                                  </tr>
+                                  <%} %>
+                                </tbody>
+                             </table>
+                        </div>
+                     </div>
+                </div>    
           </div>
-          <div class="row justify-content-center">
-              <h2>Independiente</h2>
-                <table class="table table-sm">
-                    <thead>
-                      <tr>
-                        <th scope="col">Nombre de Empresa</th>
-                        <th scope="col">Ruta</th>
-                        <th scope="col">Imagen</th>
-                        <th scope="col">Tarifa</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <% 
-                      for(Independiente i:ind){%>  
-                        <tr>
-                          <th scope="row"><%out.print(i.getNombre());%></th>
-                          <th scope="row"><%out.print(i.getCodigo_ruta());%></th>
-                          <th scope="row"><img class="img-thumbnail" width="100" height="100" src="<%out.print(i.getImagen());%>"></th>
-                          <th scope="row">S/. <%out.print(i.getTarifageneral());%></th>
-                        </tr>
-                      <%
-                      }%>
-                    </tbody>
-                 </table>
+                                
+          <div class="row justify-content-center mt-5">
+              <div class="col-3 color3 d-flex">
+                  <div class="align-self-center">
+                      <h1 class="text-white">Independiente</h1> 
+                  </div>
+                
+              </div>  
+              
+              <div class="col-8 color2">
+                  <div class="row mt-1 justify-content-center">
+                      <div class="col-10">
+                        <table class="table table-sm table-hover">
+                            <thead class="thead-dark">
+                              <tr>
+                                <th scope="col">Nombre de Empresa</th>
+                                <th scope="col">Ruta</th>
+                                <th scope="col">Imagen</th>
+                                <th scope="col">Tarifa</th>
+                              </tr>
+                            </thead>
+                            <tbody class="text-white">
+                              <% 
+                              for(Independiente i:ind){%>  
+                                <tr>
+                                  <th scope="row"><%out.print(i.getNombre());%></th>
+                                  <th scope="row"><%out.print(i.getCodigo_ruta());%></th>
+                                  <th scope="row"><img class="img-thumbnail" width="100" height="100" src="<%out.print(i.getImagen());%>"></th>
+                                  <th scope="row">S/. <%out.print(i.getTarifageneral());%></th>
+                                </tr>
+                              <%
+                              }%>
+                            </tbody>
+                         </table>
+                    </div>
+                  </div>
+               </div>
           </div>
-          <div class="row justify-content-center">
-             
-                <table class="table table-sm">
-                    <thead>
-                      <tr>
-                        <th scope="col">Paraderos de Ruta</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <% 
-                          for(Paradero p:par){%>  
-                      <tr>
-                        <th scope="row"><%out.print(p.getDescripcion());%></th>
-                      </tr>
-                      <%
-                      }%>
-                    </tbody>
-                 </table>
+          <div class="row justify-content-center mt-5 mb-5">
+              <div class="col-4 color4">
+                  <div class="row mt-1 justify-content-center">
+                      <div class="col-10">
+                            <table class="table table-sm text-center table-hover">
+                                <thead class="thead-dark">
+                                  <tr>
+                                    <th scope="col">Paraderos de Ruta</th>
+                                  </tr>
+                                </thead>
+                                <tbody class="text-white">
+                                  <% 
+                                      for(Paradero p:par){%>  
+                                  <tr>
+                                    <th scope="row"><%out.print(p.getDescripcion());%></th>
+                                  </tr>
+                                  <%
+                                  }%>
+                                </tbody>
+                             </table>
+                        </div>
+                   </div>
+              </div>      
           </div>
         </div>
     <script>

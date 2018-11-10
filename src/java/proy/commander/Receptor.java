@@ -30,7 +30,7 @@ public class Receptor {
     
     public List<Empresa> obtener(String paradero){
        List<Empresa> list = new ArrayList<Empresa>();
-        String sql = "select e.id_empresa,e.nombre,e.imagen,r.id_ruta,r.codigo_ruta,e.tipo from empresa e, ruta r, empresa_ruta er,ruta_paradero rp, paradero p where p.descripcion like '%"+paradero+"%' and p.id_paradero = rp.id_paradero and rp.id_ruta = r.id_ruta and r.id_ruta = er.id_ruta and e.id_empresa = er.id_empresa group by id_empresa;";
+        String sql = "select e.id_empresa,e.nombre,e.imagen,r.id_ruta,r.codigo_ruta,e.tipo from empresa e, ruta r, empresa_ruta er,ruta_paradero rp, paradero p where p.descripcion like '%"+paradero+"%' and p.id_paradero = rp.id_paradero and rp.id_ruta = r.id_ruta and r.id_ruta = er.id_ruta and e.id_empresa = er.id_empresa;";
         PreparedStatement ps = null;
         try {
             ps = _conn.prepareStatement(sql);//
