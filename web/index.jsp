@@ -14,7 +14,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <script src="http://maps.googleapis.com/maps/api/js?v3"></script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=
+AIzaSyAd32X_TFs3Db480JGyg0YS9weM0XoO-t8"
+  type="text/javascript"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <style type="text/css">
            body { background-image: url(img/fondo.jpg) ;
