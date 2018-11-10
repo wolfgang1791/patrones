@@ -3,25 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proy.iterator;
+package proy.mediator;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import proy.commander.Receptor;
 
 /**
  *
  * @author Jonathan
  */
-@WebServlet(name = "IteratorServelt", urlPatterns = {"/IteratorServelt"})
-public class IteratorServelt extends HttpServlet {
+@WebServlet(name = "MediatorServet", urlPatterns = {"/MediatorServet"})
+public class MediatorServet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,15 +34,6 @@ public class IteratorServelt extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-         EmpresasTotales et = new EmpresasTotales();
-             try {
-                et.add(Data.loadData());
-                
-                request.setAttribute("emp_totales", et);
-                getServletConfig().getServletContext().getRequestDispatcher("/reg/empresas_.jsp").forward(request,response);
-             } catch (SQLException ex) {
-                Logger.getLogger(IteratorServelt.class.getName()).log(Level.SEVERE, null, ex);
-             }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -58,8 +48,7 @@ public class IteratorServelt extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-             processRequest(request, response);
-             
+        processRequest(request, response);
     }
 
     /**
@@ -73,8 +62,33 @@ public class IteratorServelt extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            processRequest(request, response);
-           
+             processRequest(request, response); 
+             
+             Receptor r = Receptor.getInstance();
+             List<Usuario> list_u = r.obtener_user();
+             UsuarioMediator um = new UsuarioMediator();
+             for(Usuario u : list_u){
+                 um.registra(u);
+                 System.out.println(u.getName());
+             }
+             String name = request.getParameter("user");
+             String pass = request.getParameter("pass");
+             
+             Usuario ingresa = new Usuario(um);
+             ingresa.setName(name);
+             ingresa.setPass(pass);
+             //um.registra(ingresa);
+    
+             for(Usuario u : list_u){
+                 if(ingresa.envia(u.getName(), pass)){System.out.println(ingresa.envia(u.getName(), pass));
+                      getServletConfig().getServletContext().getRequestDispatcher("/IteratorServelt").forward(request,response);
+                      return;
+                 }
+                 else{
+                     getServletConfig().getServletContext().getRequestDispatcher("/reg/log_admin.jsp").forward(request,response);
+                     return;
+                 }
+             }
     }
 
     /**

@@ -45,6 +45,9 @@
                           <%} %>
                         </tbody>
                      </table>
+                    <form action="/IteratorServlet" method="post">
+                        <input class="btn" type="submit" value="Agregar Empresa">
+                    </form>
               </div>
           </div>            
     </body>

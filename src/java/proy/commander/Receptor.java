@@ -15,17 +15,25 @@ import proy.conexion.Conexion;
 import proy.entidad.Empresa;
 import proy.entidad.Empresa_;
 import proy.entidad.Paradero;
+import proy.mediator.Usuario;
 
 /**
  *
  * @author Jonathan
  */
 public class Receptor {
-    
+    public static Receptor receptor = null;
     Connection _conn = null;
     
-    public Receptor(){
+    private Receptor(){
      _conn = Conexion.initialize();
+    }
+    
+    public static Receptor getInstance(){
+        if(receptor == null){
+            receptor = new Receptor(); 
+        }
+        return receptor;
     }
     
     public List<Empresa> obtener(String paradero){
@@ -94,6 +102,26 @@ public class Receptor {
         System.out.println("Error crear la sentencia "+ e.getMessage());
         }
         return rs;
+    }
+    
+    public List<Usuario> obtener_user(){
+        List<Usuario> list = new ArrayList<Usuario>();
+        String sql = "select * from usuario";
+        PreparedStatement ps = null;
+        try {
+            ps = _conn.prepareStatement(sql);
+            System.out.println(sql);
+            ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                   Usuario u = new Usuario(null);
+                   u.setName(rs.getString(2));
+                   u.setPass(rs.getString(3));
+                   list.add(u);
+                }
+        }catch (SQLException e) {
+        System.out.println("Error crear la sentencia "+ e.getMessage());
+        }
+        return list;
     }
         
 }

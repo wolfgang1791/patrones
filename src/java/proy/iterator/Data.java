@@ -13,7 +13,7 @@ import proy.commander.Receptor;
  * @author Jonathan
  */
 public class Data {
-    private static Receptor _r = new Receptor();
+    private static Receptor _r = Receptor.getInstance();
     public static ResultSet loadData(){
        return _r.obtener_todos();
     }

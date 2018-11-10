@@ -13,7 +13,7 @@ import proy.entidad.Empresa;
  * @author Jonathan
  */
 public class BuscarEmpresa implements IBuscarEmpresa{
-    Receptor r = new Receptor();
+    Receptor r = Receptor.getInstance();
     
     public BuscarEmpresa(){}
     
