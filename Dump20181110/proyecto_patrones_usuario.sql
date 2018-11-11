@@ -16,30 +16,28 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `ruta_paradero`
+-- Table structure for table `usuario`
 --
 
-DROP TABLE IF EXISTS `ruta_paradero`;
+DROP TABLE IF EXISTS `usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ruta_paradero` (
-  `id_ruta` int(11) DEFAULT NULL,
-  `id_paradero` int(11) DEFAULT NULL,
-  KEY `id_ruta` (`id_ruta`),
-  KEY `id_paradero` (`id_paradero`),
-  CONSTRAINT `ruta_paradero_ibfk_1` FOREIGN KEY (`id_ruta`) REFERENCES `ruta` (`id_ruta`),
-  CONSTRAINT `ruta_paradero_ibfk_2` FOREIGN KEY (`id_paradero`) REFERENCES `paradero` (`id_paradero`)
+CREATE TABLE `usuario` (
+  `id_usuario` int(11) NOT NULL,
+  `nombre` varchar(30) DEFAULT NULL,
+  `pass` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`id_usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `ruta_paradero`
+-- Dumping data for table `usuario`
 --
 
-LOCK TABLES `ruta_paradero` WRITE;
-/*!40000 ALTER TABLE `ruta_paradero` DISABLE KEYS */;
-INSERT INTO `ruta_paradero` VALUES (1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(1,7),(1,8),(1,9),(1,10),(1,11),(1,12),(1,13),(1,14),(1,15),(1,16),(1,17),(1,18),(1,19),(1,20),(2,1),(2,21),(2,22),(2,23),(2,24),(2,25),(2,26),(2,27),(2,28),(2,29),(2,30),(2,31),(2,32),(2,33),(2,34),(2,35),(2,36),(2,37),(2,38),(2,39),(2,40);
-/*!40000 ALTER TABLE `ruta_paradero` ENABLE KEYS */;
+LOCK TABLES `usuario` WRITE;
+/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` VALUES (1,'admin','admin'),(2,'user','1234');
+/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -51,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-03 13:21:30
+-- Dump completed on 2018-11-10 20:58:14
