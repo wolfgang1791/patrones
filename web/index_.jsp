@@ -175,6 +175,11 @@ AIzaSyAd32X_TFs3Db480JGyg0YS9weM0XoO-t8"
                    </div>
               </div>      
           </div>
+          <div class="row justify-content-center">
+              <form action="/patrones/reg/log_admin.jsp">
+                  <input class="btn btn-success"type="submit" value="Administrar">
+              </form>
+          </div>
         </div>
     <script>
             navigator.geolocation.getCurrentPosition(fn_ok,fn_mal);

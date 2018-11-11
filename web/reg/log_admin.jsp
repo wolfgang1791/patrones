@@ -13,16 +13,16 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Login</h1>
         <form  action="/patrones/MediatorServet" method="post"> 
             <div class="col-md-4 form-group">
                 <label for="nom">Nombre de Usuario:</label>
-                <input type="text" class="form-control" id="user" name="user" placeholder="Ejm: Chacarita S.A.">
+                <input type="text" class="form-control" id="user" name="user" placeholder="Nombre de Usuario">
             </div>
           
             <div class="col-md-4 form-group">
                 <label for="img">Contraseña</label>
-                <input type="password" class="form-control" id="pass" name="pass" placeholder="Ejm: nombre de archivo">
+                <input type="password" class="form-control" id="pass" name="pass" placeholder="Contraseña">
             </div>
             
             <div class="col-md-4 form-group">

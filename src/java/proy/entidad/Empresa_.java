@@ -14,7 +14,8 @@ public class Empresa_ {
     private String nombre;
     private String imagen;
     private String tipo;
-
+    private int ruta;
+    
     public Integer getId() {
         return id;
     }
@@ -47,6 +48,15 @@ public class Empresa_ {
         this.tipo = tipo;
     }
 
+    public int getRuta() {
+        return ruta;
+    }
+    
+    public void setRuta(int ruta) {
+        this.ruta = ruta;
+    }
+    
+    
     @Override
     public String toString() {
         return "Empresa_{" + "id=" + id + ", nombre=" + nombre + ", imagen=" + imagen + ", tipo=" + tipo + '}';

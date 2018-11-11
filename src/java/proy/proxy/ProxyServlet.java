@@ -3,23 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proy.mediator;
+package proy.proxy;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.Random;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import proy.commander.Receptor;
+import proy.entidad.Empresa_;
 
 /**
  *
  * @author Jonathan
  */
-@WebServlet(name = "MediatorServet", urlPatterns = {"/MediatorServet"})
-public class MediatorServet extends HttpServlet {
+@WebServlet(name = "ProxyServlet", urlPatterns = {"/ProxyServlet"})
+public class ProxyServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,9 +30,11 @@ public class MediatorServet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    public static Random r_ = new Random();
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+      
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -61,36 +63,27 @@ public class MediatorServet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-             processRequest(request, response); 
+             processRequest(request, response);
              
-             Receptor r = Receptor.getInstance();
-             List<Usuario> list_u = r.obtener_user();
-             UsuarioMediator um = new UsuarioMediator();
-             for(Usuario u : list_u){
-                 um.registra(u);
-                 System.out.println(u.getName());
-             }
-             String name = request.getParameter("user");
-             String pass = request.getParameter("pass");
+             ConnectionManager.conectarse();
              
-             Usuario ingresa = new Usuario(um);
-             ingresa.setName(name);
-             ingresa.setPass(pass);
-             //um.registra(ingresa);
-             boolean flag = false;
-             for(Usuario u : list_u){
-                 if(ingresa.envia(u.getName(), pass)){
-                      System.out.println(ingresa.envia(u.getName(), pass));
-                      flag=true;   
-                 } 
-             }
+             String nombre = request.getParameter("nom");
+             String ruta = request.getParameter("ruta");
+             String img = request.getParameter("img");
+             String tipo = request.getParameter("tipo");
+    
+             Empresa_ e = new Empresa_();
+             e.setId(r_.nextInt(100)+9);
+             e.setNombre(nombre);
+             e.setImagen(img);
+             e.setTipo(tipo.trim());
+             e.setRuta(Integer.parseInt(ruta.trim()));
              
-             if(flag){
-                  getServletConfig().getServletContext().getRequestDispatcher("/IteratorServelt").forward(request,response); 
-             }
-             else{
-                 getServletConfig().getServletContext().getRequestDispatcher("/reg/log_admin.jsp").forward(request,response);
-             }
+             GuardarDatos gdatos = new GuardarDatos();
+             gdatos.save(e);
+             
+             getServletConfig().getServletContext().getRequestDispatcher("/IteratorServelt").forward(request,response);
+    
     }
 
     /**

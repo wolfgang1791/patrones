@@ -21,7 +21,7 @@ public class UsuarioMediator implements IUsuarioMediator {
 
     @Override
     public boolean envia(String de, String a, String msj) {
-        if(login.containsKey(de) && login.containsKey(a)){
+        if(login.containsKey(a)){
             Usuario u = login.get(a);      
             return u.recibe(de, msj);
         }

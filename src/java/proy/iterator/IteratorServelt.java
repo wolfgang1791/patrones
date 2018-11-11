@@ -6,7 +6,6 @@
 package proy.iterator;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,7 +37,6 @@ public class IteratorServelt extends HttpServlet {
          EmpresasTotales et = new EmpresasTotales();
              try {
                 et.add(Data.loadData());
-                
                 request.setAttribute("emp_totales", et);
                 getServletConfig().getServletContext().getRequestDispatcher("/reg/empresas_.jsp").forward(request,response);
              } catch (SQLException ex) {
@@ -75,7 +73,8 @@ public class IteratorServelt extends HttpServlet {
             throws ServletException, IOException {
             processRequest(request, response);
            
-    }
+            
+            }
 
     /**
      * Returns a short description of the servlet.

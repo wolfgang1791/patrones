@@ -45,9 +45,18 @@
                           <%} %>
                         </tbody>
                      </table>
-                    <form action="/IteratorServlet" method="post">
-                        <input class="btn" type="submit" value="Agregar Empresa">
+              </div>
+              <div class="row justify-content-center">
+                  <div class="col-md-2">
+                    <form action="/patrones/ObserverServlet" method="post">
+                          <input class="btn btn-secondary" type="submit" value="Agregar Empresa">
                     </form>
+                  </div>
+                  <div class="col-md--2">
+                    <form action="/patrones/">
+                        <input class="btn btn-danger" type="submit" value="Salir">
+                    </form>
+                  </div>   
               </div>
           </div>            
     </body>
