@@ -57,13 +57,16 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    <head>\r\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n");
       out.write("        <title>JSP Page</title>\r\n");
-      out.write("        <script src=\"http://maps.googleapis.com/maps/api/js?v3\"></script>\r\n");
+      out.write("        <script async defer src=\"https://maps.googleapis.com/maps/api/js?key=\r\n");
+      out.write("AIzaSyAd32X_TFs3Db480JGyg0YS9weM0XoO-t8\"\r\n");
+      out.write("  type=\"text/javascript\"></script>\r\n");
       out.write("        <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css\" integrity=\"sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO\" crossorigin=\"anonymous\">\r\n");
       out.write("        <style type=\"text/css\">\r\n");
       out.write("           body { background-image: url(img/fondo.jpg) ;\r\n");
       out.write("                  background-repeat: no-repeat;\r\n");
       out.write("                  background-size: 100%;\r\n");
       out.write("                  background-attachment: fixed;\r\n");
+      out.write("                  \r\n");
       out.write("           }\r\n");
       out.write("           .xd{\r\n");
       out.write("               background: #fff;\r\n");
@@ -117,7 +120,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    \r\n");
       out.write("            </form>\r\n");
       out.write("            <div class=\"xd\">      \r\n");
-      out.write("                <div class=\"row justify-content-md-center \">\r\n");
+      out.write("                <div class=\"row justify-content-md-center mb-5 \">\r\n");
       out.write("                    <div class=\"col ml-6\">\r\n");
       out.write("                     <section id=\"map\" style=\"  height: 500px;\"></section>\r\n");
       out.write("                    </div> \r\n");
