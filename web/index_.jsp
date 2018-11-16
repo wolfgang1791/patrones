@@ -15,16 +15,17 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-          <script async defer src="https://maps.googleapis.com/maps/api/js?key=
+        <link href="https://fonts.googleapis.com/css?family=Handlee" rel="stylesheet">  
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=
 AIzaSyAd32X_TFs3Db480JGyg0YS9weM0XoO-t8"
   type="text/javascript"></script>
         <!--<script src="http://maps.googleapis.com/maps/api/js?v3"></script>-->
          <style type="text/css">
            body { background-image: url(img/fondo2.jpg) ;
                   background-repeat: no-repeat;
-                  background-size: 100%;
+                  background-size: cover;
                   background-attachment: fixed;
-                  
+                  font-family: 'Handlee', cursive;
            }
            .xd{
                
@@ -62,7 +63,7 @@ AIzaSyAd32X_TFs3Db480JGyg0YS9weM0XoO-t8"
             <form action="MainServlet" method="post">
                 <div class="form-group row justify-content-center mt-4">
                     <div class="col-2">
-                        <label for="paradero" class="col-form-label text-md-right "><h4 class="text-white">¿A dondé ir?</h4></label>
+                        <label for="paradero" class="col-form-label text-md-right "><h3 class="text-white">¿A dondé ir?</h3></label>
                     </div>
                     <div class="col-4">
                         <input id="name" type="text" class="form-control" name="paradero"autofocus>

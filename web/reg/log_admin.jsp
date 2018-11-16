@@ -11,8 +11,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    
-        <style type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Handlee" rel="stylesheet">      
+    <style type="text/css">
          body { background-image: url(../img/fondo.jpg);
                   background-repeat: no-repeat;
                   background-size: cover ;
@@ -36,6 +36,9 @@ margin-top: -200px !important; /* Restamos la mitad de la altura del objeto con 
 margin-left: -200px !important; /* Restamos la mitad de la anchura del objeto con un margin-left */
                 
             }
+            .texto{
+                font-family: 'Handlee', cursive;
+            }
             
             
             
@@ -50,7 +53,7 @@ margin-left: -200px !important; /* Restamos la mitad de la anchura del objeto co
                 <div class="row justify-content-center mt-5  ">
                     <div class="col-md-4 color xd" >
 
-                    <div class="row justify-content-center mb-4  text-white "> 
+                    <div class="row justify-content-center mb-4  text-white texto "> 
                         
                         <div class="col-md-12 mt-5" >
                             <h1 class="text-center">Pon tus weas</h1>

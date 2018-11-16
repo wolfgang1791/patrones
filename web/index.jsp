@@ -18,11 +18,14 @@
 AIzaSyAd32X_TFs3Db480JGyg0YS9weM0XoO-t8"
   type="text/javascript"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Handlee" rel="stylesheet"> 
         <style type="text/css">
-           body { background-image: url(img/fondo.jpg) ;
+        
+           body { background-image: url(img/fondo2.jpg) ;
                   background-repeat: no-repeat;
-                  background-size: 100%;
+                  background-size: cover;
                   background-attachment: fixed;
+                  font-family: 'Handlee', cursive;
                   
            }
            .xd{
@@ -53,7 +56,7 @@ AIzaSyAd32X_TFs3Db480JGyg0YS9weM0XoO-t8"
                 
                 <div class="form-group row justify-content-center mt-4">
                     <div class="col-2">
-                        <label for="paradero" class=" col-form-label text-md-right"><h4 class="text-white">¿A dondé ir?</h4></label>
+                        <label for="paradero" class=" col-form-label text-md-right"><h3 class="text-white">¿A dondé ir?</h3></label>
                     </div>
                     <div class="col-4 ">
                         <input id="name" type="text" class="form-control" name="paradero"autofocus>
